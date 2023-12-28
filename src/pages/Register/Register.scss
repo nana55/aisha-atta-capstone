@@ -1,0 +1,87 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.register {
+    height: 100vh;
+    background-color: $background;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__container {
+        display: flex;
+        width: 70%;
+        border-radius: 0.75rem;
+        background-color: white;
+        min-height: 40vh;
+        overflow: hidden;
+    }
+
+    &__login {
+        background-image: linear-gradient(rgba(216, 191, 216, 0.671), rgba(216, 191, 216, 0.678)), url('../../assets/images/login-bg.jpg');
+        background-position: center;
+        background-size: cover;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        color: $text;
+        width: 50%;
+        gap: 2rem;
+
+        //border-radius: 0.75rem;
+    }
+
+    &__title {
+        font-size: 2.9rem;
+        margin-top: 2rem;
+    }
+
+    &__text {
+        font-size: 2.25rem;
+    }
+
+    &__sub-text {
+        color: white;
+        font-size: 1.25rem;
+    }
+
+    &__button {
+        width: 50%;
+        padding: 0.25rem;
+        border: none;
+        border-radius: 0.75rem;
+        background-color: $button;
+        height: 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        color: white;
+    }
+
+    &__register {
+        width: 50%;
+        padding: 1.5rem;
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    input {
+        border: none;
+        border-bottom: 1px solid lightgrey;
+        padding: 1.25rem;
+    }
+
+    ;
+}

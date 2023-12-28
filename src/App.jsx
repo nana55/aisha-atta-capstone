@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Login from './pages/Login/Login'
 import './App.scss'
+import Register from './pages/Register/Register'
 
 function App() {
  
@@ -9,7 +10,7 @@ function App() {
     <>
       <div>
         <Login />
-        
+        <Register />
       </div>
    
     </>
