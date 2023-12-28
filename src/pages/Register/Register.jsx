@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Register.scss";
+import { Link } from 'react-router-dom';
 
 function Register() {
     return (
@@ -21,7 +22,10 @@ function Register() {
                         <h1 className='register__title'>Commit Hub</h1>
                         <p className='register__text'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                         <p className='register__sub-text'>I already have an account</p>
+                        <Link to="/login">
                         <button className='register__button'>Log in</button>
+                        </Link>
+                        
                     
                 </div>
             </div>
