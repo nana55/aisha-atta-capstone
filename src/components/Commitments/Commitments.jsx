@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import './Commitments.scss';
 import avatar from '../../assets/images/avatar.jpg';
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -7,6 +7,7 @@ import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined';
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
+import Comments from '../Comments/Comments';
 
 
 function Commitments() {
@@ -70,7 +71,7 @@ function Commitments() {
 
     const liked = true;
     const starred = true;
-
+    const [commentVisible, setCommentVisible] = useState(false);
     return (
         <div className='commitments'>Commitments
             <div className="commitments__list">
@@ -98,7 +99,8 @@ function Commitments() {
                                 {starred ? <StarOutlinedIcon /> : <StarBorderOutlinedIcon />}
                                 20 Stars
                             </div>
-                            <div className="commitments__icon">
+                            <div className="commitments__icon" 
+                            onClick={() => setCommentVisible(!commentVisible)}>
                                 <SmsOutlinedIcon />
                                 12 Comments
                             </div>
@@ -107,8 +109,10 @@ function Commitments() {
                                 Share
                             </div>
                         </div>
+                        {commentVisible && <Comments />}
                     </li>
                 ))}
+                
             </div>
         </div>
     )
