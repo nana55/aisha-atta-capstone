@@ -2,3 +2,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.layout{
+  display: flex;
+
+  &__main{
+    flex:6;
+  }
+}

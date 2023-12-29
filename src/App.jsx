@@ -16,7 +16,10 @@ function App() {
         <Header />
         <div className='layout'>
           <SideBar />
-          <Outlet />
+          <div className='layout__main'>
+            <Outlet />
+          </div>
+          
         </div>
       </div>
     )
