@@ -1,3 +1,7 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+
 .header {
     display: flex;
     align-items:center;
@@ -7,7 +11,8 @@
     border-bottom: 1px solid $outline;
     position: sticky;
     top: 0;
-    background-color: rgb(209, 224, 238);
+    //background-color: rgb(209, 224, 238);
+    background-color: white;
     //z-index: 999;
 
     // &__logo {
