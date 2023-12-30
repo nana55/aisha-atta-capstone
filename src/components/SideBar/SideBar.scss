@@ -4,7 +4,7 @@
 
 .sidebar{
     flex: 3;
-    padding: 2rem 2rem 2rem 4rem;
+    padding: 2rem 0rem 2rem 4rem;
     background-color: $headerbg;
     //border: 1px solid black;
 
@@ -19,7 +19,11 @@
         box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
         padding: 20px;
         margin-bottom: 20px;
-        background-color: white;
+        //background-color: white;
         border-radius: 0.4rem;
+    }
+
+    &__title{
+        font-size: 1.8rem;
     }
 }

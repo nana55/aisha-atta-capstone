@@ -73,7 +73,8 @@ function Commitments() {
     const starred = true;
     const [commentVisible, setCommentVisible] = useState(false);
     return (
-        <div className='commitments'>Commitments
+        <div className='commitments'>
+            <h2 className='commitments__title'>Commitments Feed</h2>
             <div className="commitments__list">
                 {goalsData.map((goalData) => (
                     <li key={goalData.id} className='commitments__item'>
