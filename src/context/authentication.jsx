@@ -19,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
         setCurrentUser(res.data) 
         }catch (error){
             console.error("Unable to Login", error);
+            throw error;
         }
         
     };

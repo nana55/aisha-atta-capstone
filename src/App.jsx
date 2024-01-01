@@ -35,6 +35,7 @@ function App() {
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser || !currentUser.id) {
+      console.log('Redirecting to login');
       return <Navigate to="/login" />;
     }
 

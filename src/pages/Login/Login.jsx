@@ -20,11 +20,23 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        if (!inputs.username || !inputs.password) {
+            setError("Please fill in all fields.");
+            return;
+        }
         try {
             await login(inputs);
             navigate("/")
         } catch (err) {
-            setError(err.response.data);
+            console.error("Login error:", err);
+            if ( err.response && err.response.status === 400 ) {
+                
+                setError("Incorrect username or password. Please try again.");
+                console.log("Error message:", error);
+            } else {
+                console.error("Other Server Response:", err.response);
+                setError(err.response.data);
+            }
         }
     };
 
