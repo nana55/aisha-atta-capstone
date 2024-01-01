@@ -37,17 +37,17 @@ body {
     }
 
     &__title {
-        font-size: 2.9rem;
+        font-size: 1.7rem;
         margin-top: 2rem;
     }
 
     &__text {
-        font-size: 2.25rem;
+        font-size: 2.55rem;
     }
 
     &__sub-text {
         color: white;
-        font-size: 1.25rem;
+        font-size: 0.85rem;
     }
 
     &__button {
@@ -81,6 +81,12 @@ body {
         border: none;
         border-bottom: 1px solid lightgrey;
         padding: 1.25rem;
+
+        &:focus {
+            border: 2px solid $button;
+            outline: none;
+        }
+
     }
 
     &__error{

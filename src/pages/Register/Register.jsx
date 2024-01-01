@@ -16,10 +16,6 @@ function Register() {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
 
-    const ErrorMessage = ({ error }) => {
-        return <div className="register__error">{error}</div>;
-    };
-
     const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
@@ -76,7 +72,7 @@ function Register() {
                 <div className="register__login">
 
                     <h1 className='register__title'>Welcome Back!</h1>
-                    <p className='register__text'>Embark on a journey to turn your dreams into achievements. Login to make it happen!</p>
+                    <p className='register__text'>Embark on a journey to turn your dreams into achievements.<br/>Login to make it happen!</p>
                     <p className='register__sub-text'>I already have an account</p>
                     <Link to="/login">
                         <button className='register__button'>Log in</button>

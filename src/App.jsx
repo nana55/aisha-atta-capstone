@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Home from './pages/Home/Home'
@@ -7,8 +7,15 @@ import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Profile from './pages/Profile/Profile'
+import { useContext } from "react";
+import { AuthContext } from "./context/authentication";
 
 function App() {
+  const { currentUser } = useContext(AuthContext);
+  useEffect(() => {
+    console.log('Current User:', currentUser);
+  }, [currentUser]);
+
 
   const Layout = () => {
     return (
@@ -19,16 +26,15 @@ function App() {
           <div className='layout__main'>
             <Outlet />
           </div>
-          
+
         </div>
       </div>
     )
   }
 
-  const currentUser = true;
 
   const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
+    if (!currentUser || !currentUser.id) {
       return <Navigate to="/login" />;
     }
 
