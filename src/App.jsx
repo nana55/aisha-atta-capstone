@@ -9,6 +9,7 @@ import SideBar from './components/SideBar/SideBar'
 import Profile from './pages/Profile/Profile'
 import { useContext } from "react";
 import { AuthContext } from "./context/authentication";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -16,19 +17,22 @@ function App() {
     console.log('Current User:', currentUser);
   }, [currentUser]);
 
+  const queryClient = new QueryClient();
 
   const Layout = () => {
     return (
-      <div>
-        <Header />
-        <div className='layout'>
-          <SideBar />
-          <div className='layout__main'>
-            <Outlet />
-          </div>
+      <QueryClientProvider client={queryClient}>
+        <div>
+          <Header />
+          <div className='layout'>
+            <SideBar />
+            <div className='layout__main'>
+              <Outlet />
+            </div>
 
+          </div>
         </div>
-      </div>
+      </QueryClientProvider>
     )
   }
 
@@ -46,17 +50,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Layout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<Home />} />
-        <Route path="profile/:id" element={<Profile />} />
-      </Route>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Home />} />
+          <Route path="profile/:id" element={<Profile />} />
+        </Route>
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
