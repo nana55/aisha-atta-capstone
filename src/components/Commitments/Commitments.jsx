@@ -8,70 +8,26 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import Comments from '../Comments/Comments';
+import { useQuery, useQueryClient, useMutation } from "react-query";
+import { apiRequest } from "../../utils/axios.jsx";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authentication.jsx";
 
+function Commitments({user_id}) {
 
-function Commitments() {
-
-    const goalsData = [
-        {
-            id: 1,
-            name: "Jane Doe",
-            userId: "user123",
-            avatar: "https://example.com/avatar1.jpg",
-            commitment: "Learn React",
-            img: "https://hips.hearstapps.com/hmg-prod/images/nature-quotes-landscape-1648265299.jpg",
-            category: "Learning",
-        },
-        {
-            id: 2,
-            name: "John Smith",
-            userId: "user456",
-            avatar: "https://example.com/avatar2.jpg",
-            commitment: "Exercise regularly (3 times a week)",
-            img: "https://media.cntraveller.com/photos/611bf0b8f6bd8f17556db5e4/master/pass/gettyimages-1146431497.jpg",
-            category: "Health",
-        },
-        {
-            id: 3,
-            name: "Alice Johnson",
-            userId: "user789",
-            avatar: "https://example.com/avatar3.jpg",
-            commitment: "Read a book per month",
-            img: "",
-            category: "Reading",
-        },
-        {
-            id: 4,
-            name: "Bob Miller",
-            userId: "user123",
-            avatar: "https://example.com/avatar1.jpg",
-            commitment: "Practice mindfulness (10 minutes daily)",
-            img: "https://example.com/image4.jpg",
-            category: "Wellness",
-        },
-        {
-            id: 5,
-            name: "Eva Brown",
-            userId: "user456",
-            avatar: "https://example.com/avatar2.jpg",
-            commitment: "Learn a new language (30 minutes daily)",
-            img: "https://assets-global.website-files.com/648f76da04dfc69f8db5bb19/64e6da8edda885b595a42c30_how-to-get-your-study-motivation-ignited.png",
-            category: "Learning",
-        },
-        {
-            id: 6,
-            name: "Charlie Davis",
-            userId: "user789",
-            avatar: "https://example.com/avatar3.jpg",
-            commitment: "Explore nature every weekend",
-            img: "https://i.scdn.co/image/ab67616d0000b273276d8a2d0264506d16e5eb96",
-            category: "Adventure",
-        },
-    ];
-
+    const { isLoading, error, data: goalsData } = useQuery(["goals"], () =>
+        apiRequest.get("/goals?userId=" + user_id).then((response) => {
+            console.log("Response: ", response.data)
+            return response.data;
+        })
+    );
     const liked = true;
     const starred = true;
     const [commentVisible, setCommentVisible] = useState(false);
+    const { currentUser } = useContext(AuthContext);
+    const queryClient = useQueryClient();
+
+
     return (
         <div className='commitments'>
             <h2 className='commitments__title'>Commitments Feed</h2>
@@ -79,16 +35,16 @@ function Commitments() {
                 {goalsData.map((goalData) => (
                     <li key={goalData.id} className='commitments__item'>
                         <div className='commitments__user'>
-                            <img src={avatar} alt="default" className="commitments__avatar" />
+                            <img src={goalData.avatar} alt="default" className="commitments__avatar" />
                             <div className='commitments__user-info'>
-                                <span className="commitments__name">{goalData.name}</span>
-                                <span className="commitments__date">1 min ago</span>
+                                <span className="commitments__name">{goalData.userName}</span>
+                                <span className="commitments__date">{goalData.created_at}</span>
                             </div>
                         </div>
 
                         <div className="commitments__content">
-                            <p className='commitments__description'>{goalData.commitment}</p>
-                            <img src={goalData.img} alt="commitment image" className='commitments__image' />
+                            <p className='commitments__description'>{goalData.description}</p>
+                            <img src={goalData.image} alt="commitment image" className='commitments__image' />
                         </div>
 
                         <div className="commitments__interaction">
@@ -100,8 +56,8 @@ function Commitments() {
                                 {starred ? <StarOutlinedIcon /> : <StarBorderOutlinedIcon />}
                                 20 Stars
                             </div>
-                            <div className="commitments__icon" 
-                            onClick={() => setCommentVisible(!commentVisible)}>
+                            <div className="commitments__icon"
+                                onClick={() => setCommentVisible(!commentVisible)}>
                                 <SmsOutlinedIcon />
                                 12 Comments
                             </div>
@@ -113,7 +69,7 @@ function Commitments() {
                         {commentVisible && <Comments />}
                     </li>
                 ))}
-                
+
             </div>
         </div>
     )
