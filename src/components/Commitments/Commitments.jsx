@@ -15,17 +15,27 @@ import { AuthContext } from "../../context/authentication.jsx";
 
 function Commitments({user_id}) {
 
+    const liked = true;
+    const starred = true;
+    const [commentVisible, setCommentVisible] = useState(false);
+    const { currentUser } = useContext(AuthContext);
+    const queryClient = useQueryClient();
+
     const { isLoading, error, data: goalsData } = useQuery(["goals"], () =>
         apiRequest.get("/goals?userId=" + user_id).then((response) => {
             console.log("Response: ", response.data)
             return response.data;
         })
     );
-    const liked = true;
-    const starred = true;
-    const [commentVisible, setCommentVisible] = useState(false);
-    const { currentUser } = useContext(AuthContext);
-    const queryClient = useQueryClient();
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        console.error("Error fetching goals:", error);
+        return <p>Error fetching goals</p>;
+    }
 
 
     return (
