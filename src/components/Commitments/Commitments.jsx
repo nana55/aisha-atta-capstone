@@ -12,6 +12,7 @@ import { useQuery, useQueryClient, useMutation } from "react-query";
 import { apiRequest } from "../../utils/axios.jsx";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authentication.jsx";
+import moment from "moment";
 
 function Commitments({user_id}) {
 
@@ -48,7 +49,7 @@ function Commitments({user_id}) {
                             <img src={goalData.avatar} alt="default" className="commitments__avatar" />
                             <div className='commitments__user-info'>
                                 <span className="commitments__name">{goalData.userName}</span>
-                                <span className="commitments__date">{goalData.created_at}</span>
+                                <span className="commitments__date">{moment(goalData.created_at).fromNow()}</span>
                             </div>
                         </div>
 
@@ -76,7 +77,7 @@ function Commitments({user_id}) {
                                 Share
                             </div>
                         </div>
-                        {commentVisible && <Comments />}
+                        {commentVisible && <Comments goalId={goalData.id}/>}
                     </li>
                 ))}
 

@@ -1,24 +1,39 @@
 import { useState } from 'react';
 import './CreateGoal.scss';
+import { useQuery, useQueryClient, useMutation, QueryClient } from "react-query";
+import { apiRequest } from "../../utils/axios.jsx";
 
 function CreateGoal() {
 
-  const [goal, setGoal] = useState('');
+  const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
   const [category, setCategory] = useState('');
+  
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation(
+    (newGoal) => {
+      return apiRequest.post("/goals", newGoal);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["goals"]);
+      }
+    }
+  )
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
     const formData = {
-      goal,
+      description,
       image,
       category,
     };
 
     console.log("Form submitted", formData);
-
-    setGoal('');
+    mutation.mutate(formData)
+    setDescription('');
     setImage('');
     setCategory('');
   };
@@ -28,15 +43,15 @@ function CreateGoal() {
     <div className='goal-form'>
       <form className="goal-form__container" onSubmit={handleSubmit}>
         <div className="goal-form__group">
-          <label className="goal-form__label" htmlFor="goal">
+          <label className="goal-form__label" htmlFor="description">
             What would you like to commit to?
           </label>
           <input
             className="goal-form__input"
             type="text"
-            id="goal"
-            value={goal}
-            onChange={(e) => setGoal(e.target.value)}
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="I will ..."
             required
           />

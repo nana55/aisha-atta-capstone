@@ -1,38 +1,30 @@
 import avatar from '../../assets/images/avatar.jpg';
 import './comments.scss';
+import { useQuery, useQueryClient, useMutation } from "react-query";
+import { apiRequest } from "../../utils/axios.jsx";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authentication.jsx";
+import moment from "moment";
 
-function Comments() {
-
-    const comments = [
-        {
-          id: 1,
-          comment: "Great job on your goal! Keep it up!",
-          name: "Alice Johnson",
-          userId: "user123",
-        },
-        {
-          id: 2,
-          comment: "I'm inspired by your commitment. Well done!",
-          name: "Bob Miller",
-          userId: "user456",
-        },
-        {
-          id: 3,
-          comment: "Learning a new language is a fantastic goal!",
-          name: "Eva Brown",
-          userId: "user789",
-        },
-        {
-          id: 4,
-          comment: "Your mindfulness practice is admirable. Stay mindful!",
-          name: "Charlie Davis",
-          userId: "user123",
-        },
-      ];
+function Comments({goalId}) {
       
- 
+    const { currentUser } = useContext(AuthContext);
       
+    const { isLoading, error, data: commentsData } = useQuery(["comments", goalId], () =>
+        apiRequest.get(`/comments?goalId=${goalId}`).then((response) => {
+            console.log("Response: ", response.data)
+            return response.data;
+        })
+    );
 
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        console.error("Error fetching comments:", error);
+        return <p>Error fetching goals</p>;
+    }
 
   return (
     <div className="comments">
@@ -41,14 +33,14 @@ function Comments() {
         <input type="text" placeholder="Join the conversation" />
         <button className='comments__button'>Send</button>
       </div>
-      {comments.map((comment) => (
+      {commentsData.map((comment) => (
         <div key={comment.id}  className="comments__comment">
-          <img src={avatar} alt="user avatar" className='comments__avatar' />
+          <img src={comment.avatar} alt="user avatar" className='comments__avatar' />
           <div className="comments__detail">
-            <p className="comments__name">{comment.name}</p>
+            <p className="comments__name">{comment.userName}</p>
             <p className="comments__comment-actual">{comment.comment}</p>
           </div>
-          <span className="comments__date">1 hour ago</span>
+          <span className="comments__date">{moment(comment.created_at).fromNow()}</span>
         </div>
       ))}
     </div>
