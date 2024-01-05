@@ -11,21 +11,9 @@ function Comments({ goalId }) {
     const { currentUser } = useContext(AuthContext);
     const queryClient = useQueryClient();
 
-    const { isLoading, error, data: commentsData } = useQuery(["comments", goalId], () =>
-        apiRequest.get(`/comments?goalId=${goalId}`).then((response) => {
-            console.log("Response: ", response.data)
-            return response.data;
-        })
+    const { isLoading, error, data: commentsData } = useQuery(["comments", goalId], () => 
+        apiRequest.get(`/comments?goalId=${goalId}`).then((response) => response.data)
     );
-
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
-
-    if (error) {
-        console.error("Error fetching comments:", error);
-        return <p>Error fetching comments</p>;
-    }
 
     const mutation = useMutation(
         (newComment) => {
@@ -60,6 +48,19 @@ function Comments({ goalId }) {
             console.error("Error creating comment:", error);
         }
     };
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        console.error("Error fetching comments:", error);
+        return <p>Error fetching comments</p>;
+    }
+
+
+
+
 
     return (
         <div className="comments">

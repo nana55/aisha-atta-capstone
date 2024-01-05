@@ -13,6 +13,7 @@ import { apiRequest } from "../../utils/axios.jsx";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authentication.jsx";
 import moment from "moment";
+import Interactions from '../Interactions/Interactions';
 
 function Commitments({user_id}) {
 
@@ -22,18 +23,27 @@ function Commitments({user_id}) {
     const { currentUser } = useContext(AuthContext);
     const queryClient = useQueryClient();
 
-    const { isLoading, error, data: goalsData } = useQuery(["goals"], () =>
+    const { isLoading: goalsLoading, error: goalsError, data: goalsData } = useQuery(["goals"], () =>
         apiRequest.get("/goals?userId=" + user_id).then((response) => {
             console.log("Response: ", response.data)
             return response.data;
         })
     );
 
-    if (isLoading) {
+    // const { isLoading: likesLoading, error: likesError, data: likesData } = useQuery(["likes", goalId], () => 
+    //     apiRequest.get(`/likes?goalId=${goalId}`).then((response) => {
+    //         console.log("Number of likes", response.data);
+            
+    //         return response.data;
+    //     })
+    // );
+
+
+    if (goalsLoading) {
         return <p>Loading...</p>;
     }
 
-    if (error) {
+    if (goalsError) {
         console.error("Error fetching goals:", error);
         return <p>Error fetching goals</p>;
     }
@@ -57,14 +67,14 @@ function Commitments({user_id}) {
                             <p className='commitments__description'>{goalData.description}</p>
                             <img src={goalData.image} alt="commitment image" className='commitments__image' />
                         </div>
-
-                        <div className="commitments__interaction">
+                        < Interactions goalId={goalData.id} />
+                        {/* <div className="commitments__interaction">
                             <div className="commitments__icon">
-                                {liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
-                                20 Likes
+                                {liked ? <FavoriteOutlinedIcon className='commitments--like'/> : <FavoriteBorderOutlinedIcon />}
+                                {likesData.count} Likes
                             </div>
                             <div className="commitments__icon">
-                                {starred ? <StarOutlinedIcon /> : <StarBorderOutlinedIcon />}
+                                {starred ? <StarOutlinedIcon className='commitments--star'/> : <StarBorderOutlinedIcon />}
                                 20 Stars
                             </div>
                             <div className="commitments__icon"
@@ -77,7 +87,7 @@ function Commitments({user_id}) {
                                 Share
                             </div>
                         </div>
-                        {commentVisible && <Comments goalId={goalData.id}/>}
+                        {commentVisible && <Comments goalId={goalData.id}/>} */}
                     </li>
                 ))}
 
