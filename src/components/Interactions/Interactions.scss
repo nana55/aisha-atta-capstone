@@ -3,43 +3,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .interaction {
-    
-    // &__item {
-    //     -webkit-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-    //     -moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-    //     box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
-    //     border-radius: 0.5rem;
-    //     padding: 1rem;
-    // }
-
-    // &__user{
-    //     display: flex;
-    //     flex-direction: row;
-    //     gap: 1rem;
-    //     align-items: center;
-    // }
-
-    // &__user-info{
-    //     display: flex;
-    //     gap: 20rem;
-    //     justify-content: space-between;
-    // }
-
-    // &__image{
-    //     width: 100%;
-    //     max-height: 20rem;
-    //     object-fit: cover;
-    //     margin-top: 1.5rem;
-    // }
-
-    // &__date{
-    //     font-size: 0.8rem;
-    // }
-
-    // &__description{
-    //     margin-top: 1rem;
-    //     font-size: 1.2rem;
-    // }
+    padding-top: 1rem;
 
     &__container{
         display: flex;

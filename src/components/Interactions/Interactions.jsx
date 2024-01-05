@@ -33,7 +33,7 @@ function Interactions({ goalId }) {
     }
 
     return (
-        <div className='interaction'>Interactions
+        <div className='interaction'>
 
             <div className="interaction__container">
                 <div className="interaction__icon">

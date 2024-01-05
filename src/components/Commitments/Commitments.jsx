@@ -1,13 +1,4 @@
-import { useState } from 'react';
 import './Commitments.scss';
-import avatar from '../../assets/images/avatar.jpg';
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
-import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined';
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
-import Comments from '../Comments/Comments';
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import { apiRequest } from "../../utils/axios.jsx";
 import { useContext } from "react";
@@ -17,9 +8,6 @@ import Interactions from '../Interactions/Interactions';
 
 function Commitments({user_id}) {
 
-    const liked = true;
-    const starred = true;
-    const [commentVisible, setCommentVisible] = useState(false);
     const { currentUser } = useContext(AuthContext);
     const queryClient = useQueryClient();
 
@@ -29,15 +17,6 @@ function Commitments({user_id}) {
             return response.data;
         })
     );
-
-    // const { isLoading: likesLoading, error: likesError, data: likesData } = useQuery(["likes", goalId], () => 
-    //     apiRequest.get(`/likes?goalId=${goalId}`).then((response) => {
-    //         console.log("Number of likes", response.data);
-            
-    //         return response.data;
-    //     })
-    // );
-
 
     if (goalsLoading) {
         return <p>Loading...</p>;
@@ -67,27 +46,9 @@ function Commitments({user_id}) {
                             <p className='commitments__description'>{goalData.description}</p>
                             <img src={goalData.image} alt="commitment image" className='commitments__image' />
                         </div>
+                        
                         < Interactions goalId={goalData.id} />
-                        {/* <div className="commitments__interaction">
-                            <div className="commitments__icon">
-                                {liked ? <FavoriteOutlinedIcon className='commitments--like'/> : <FavoriteBorderOutlinedIcon />}
-                                {likesData.count} Likes
-                            </div>
-                            <div className="commitments__icon">
-                                {starred ? <StarOutlinedIcon className='commitments--star'/> : <StarBorderOutlinedIcon />}
-                                20 Stars
-                            </div>
-                            <div className="commitments__icon"
-                                onClick={() => setCommentVisible(!commentVisible)}>
-                                <SmsOutlinedIcon />
-                                12 Comments
-                            </div>
-                            <div className="commitments__icon">
-                                <ShareOutlinedIcon />
-                                Share
-                            </div>
-                        </div>
-                        {commentVisible && <Comments goalId={goalData.id}/>} */}
+                        
                     </li>
                 ))}
 
