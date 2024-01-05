@@ -32,7 +32,7 @@ function Header() {
                         alt="profile avatar"
                         className='header__avatar'
                     />
-                    <p>{currentUser.name}</p>
+                    <p>Hello,&nbsp;{currentUser.name}!</p>
                 </div>
             </div>
         </div>
