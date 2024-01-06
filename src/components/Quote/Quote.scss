@@ -1,0 +1,41 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+
+.quote {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    &__container {
+        padding: 0.7rem 0.7rem 0rem 0.7rem;
+    }
+
+    &__quote{
+        padding-bottom: 0.7rem;
+    }
+
+    &__author {
+        padding: 0.4rem 0 1rem 0;
+        color: rgb(39, 39, 39);
+        font-style: italic;
+        font-size: 0.9rem;
+    }
+
+    &__divider{
+        width: 2rem;
+        display: block;
+        margin: 0 auto;
+        height: 4px;
+        background-color: rgb(209, 224, 238);
+        border: none;
+    }
+
+    &__refresh{
+        cursor: pointer;
+        &:hover{
+            color: #395dfc;
+        }
+    }
+
+}

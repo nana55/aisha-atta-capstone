@@ -6,11 +6,9 @@
     flex: 3;
     padding: 2rem 0rem 2rem 4rem;
     background-color: $headerbg;
-    //border: 1px solid black;
 
     &__container{
         padding: 1rem;
-        //border: 1px solid black;
     }
 
     &__item{
@@ -24,7 +22,7 @@
     }
 
     &__title{
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-weight: 400;
     }
 }

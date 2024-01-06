@@ -1,6 +1,7 @@
 import React from 'react'
 import './SideBar.scss'
 import CreateGoal from '../CreateGoal/CreateGoal'
+import Quote from '../Quote/Quote'
 
 function SideBar() {
   return (
@@ -19,8 +20,7 @@ function SideBar() {
 
         <div className="sidebar__item">
           <h1 className='sidebar__title'>Motivational Quote</h1>
-          <h4 className='sidebar__quote'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate deserunt optio nostrum non ipsum aliquid dolorum eligendi, perferendis aspernatur unde pariatur quaerat culpa excepturi vel molestias omnis ut neque mollitia.</h4>
-          <p className='sidebar__author'>Author</p>
+          <Quote />
         </div>
 
       </div>

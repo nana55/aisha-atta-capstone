@@ -33,7 +33,6 @@ function Interactions({ goalId }) {
     //Fetch Starred Data
     const { isLoading: starsLoading, error: starsError, data: starsData } = useQuery(["stars", goalId], () =>
         apiRequest.get(`/stars?goalId=${goalId}`).then((response) => {
-            console.log("Stars : ", response.data);
             return response.data;
         })
     );
