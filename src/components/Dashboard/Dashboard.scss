@@ -1,0 +1,11 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+
+.dashboard{
+    padding-top: 1rem;
+
+    &__subtitle{
+        font-size: 0.7rem;
+    }
+}

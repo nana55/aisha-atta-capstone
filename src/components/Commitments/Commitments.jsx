@@ -23,7 +23,7 @@ function Commitments({user_id}) {
     }
 
     if (goalsError) {
-        console.error("Error fetching goals:", error);
+        console.error("Error fetching goals:", goalsError);
         return <p>Error fetching goals</p>;
     }
 
