@@ -23,7 +23,6 @@ function GoalsByUser({id}) {
 
   return (
     <div className='goalsByUser'>
-            <h2 className='goalsByUser__title'>goalsByUser Feed</h2>
             <div className="goalsByUser__list">
                 {goalsData.map((goalData) => (
                     <li key={goalData.id} className='goalsByUser__item'>

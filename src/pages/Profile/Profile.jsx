@@ -36,7 +36,6 @@ function Profile() {
       </div>
 
       <div className="profile__contents">
-        Posts
         <GoalsByUser id={id}/>
       </div>
     </div>
