@@ -27,34 +27,38 @@ function Header() {
 
 
     return (
-        <div className="header">
+        <>
             <ToastContainer />
-            <div className="header__logo">
-                <Link to="/" className='header__ref'>
-                    <img
-                        src={commitHubLogo}
-                        alt="logo"
-                        className='header__logo-image' />
-                </Link>
+            <div className="header">
 
-            </div>
-
-            <div className="header__items">
-
-                <LogoutIcon onClick={handleLogout} className='header__logout'/>
-
-                <div className="header__user">
-                    <Link to={`/profile/${currentUser.id}`}>
+                <div className="header__logo">
+                    <Link to="/" className='header__ref'>
                         <img
-                            src={currentUser.avatar}
-                            alt="profile avatar"
-                            className='header__avatar'
-                        />
+                            src={commitHubLogo}
+                            alt="logo"
+                            className='header__logo-image' />
                     </Link>
-                    <p>Hello,&nbsp;{currentUser.name}!</p>
+
+                </div>
+
+                <div className="header__items">
+
+                    <LogoutIcon onClick={handleLogout} className='header__logout' />
+
+                    <div className="header__user">
+                        <Link to={`/profile/${currentUser.id}`}>
+                            <img
+                                src={currentUser.avatar}
+                                alt="profile avatar"
+                                className='header__avatar'
+                            />
+                        </Link>
+                        <p>Hello,&nbsp;{currentUser.name}!</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+
     )
 }
 
