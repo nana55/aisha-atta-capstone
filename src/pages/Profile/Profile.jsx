@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import "./Profile.scss";
-import avatar from '../../assets/images/avatar.jpg';
 import { useParams } from 'react-router-dom';
 import { apiRequest } from '../../utils/axios.jsx';
-import Commitments from '../../components/Commitments/Commitments';
 import GoalsByUser from '../../components/GoalsByUser/GoalsByUser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Profile() {
   const { id } = useParams();
@@ -14,10 +14,9 @@ function Profile() {
     const fetchUserData = async () => {
       try {
         const response = await apiRequest.get(`/users/profile/${id}`);
-        console.log("userData: ", response.data);
         setUserData(response.data);
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        toast.error('Error fetching user data');
       }
     };
 
