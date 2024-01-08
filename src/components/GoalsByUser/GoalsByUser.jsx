@@ -3,8 +3,13 @@ import { useQuery } from "react-query";
 import { apiRequest } from "../../utils/axios.jsx";
 import moment from "moment";
 import Interactions from '../Interactions/Interactions';
+import ProgressTracker from '../ProgressTracker/ProgressTracker';
+import { AuthContext } from '../../context/authentication.jsx';
+import { useContext } from 'react';
 
-function GoalsByUser({id}) {
+function GoalsByUser({ id }) {
+    const { currentUser } = useContext(AuthContext);
+
     const { isLoading: goalsLoading, error: goalsError, data: goalsData } = useQuery(["goals"], () =>
         apiRequest.get(`/goals/user/${id}`).then((response) => {
             console.log("Response to Goals by User: ", response.data)
@@ -36,10 +41,16 @@ function GoalsByUser({id}) {
 
                         <div className="goalsByUser__content">
                             <p className='goalsByUser__description'>{goalData.description}</p>
-                            <img src={goalData.image} alt="commitment image" className='goalsByUser__image' />
+                            
+                            {goalData.image && (
+                                <img src={goalData.image} alt={`Image for ${goalData.description}`} className='commitments__image' />
+                            )}
+                            {!goalData.image && (<img src='' alt='' />)}
+                            
                         </div>
                         
                         < Interactions goalId={goalData.id} />
+                        {currentUser.id === goalData.user_id && <ProgressTracker goalId={goalData.id} />}
                         
                     </li>
                 ))}
