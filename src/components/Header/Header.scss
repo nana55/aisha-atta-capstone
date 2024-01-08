@@ -48,4 +48,11 @@
         font-weight: 500;
     }
 
+    &__logout{
+        cursor: pointer;
+        &:hover{
+            color: $hover;
+        }
+    }
+
 }
