@@ -10,6 +10,8 @@ import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import Comments from '../Comments/Comments';
 import { AuthContext } from "../../context/authentication.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Interactions({ goalId }) {
 
@@ -99,13 +101,13 @@ function Interactions({ goalId }) {
 
 
 
-    if (isLoading) {
+    if (isLoading || commentsLoading || starsLoading) {
         return <p>Loading...</p>;
     }
 
-    if (error) {
-        console.error("Error fetching likes:", error);
-        return <p>Error fetching likes</p>;
+    if (error || commentsError || starsError) {
+        toast.error("Error fetching data");
+        return;
     }
 
 
