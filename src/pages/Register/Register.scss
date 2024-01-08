@@ -32,8 +32,6 @@ body {
         color: $text;
         width: 50%;
         gap: 2rem;
-
-        //border-radius: 0.75rem;
     }
 
     &__title {
@@ -90,6 +88,6 @@ body {
     }
 
     &__error{
-        color: red;
+        color: $error;
     }
 }
