@@ -4,6 +4,8 @@ import BarChart from '../BarChart/BarChart';
 import { apiRequest } from '../../utils/axios';
 import { useQuery, useQueryClient } from 'react-query';
 import { AuthContext } from "../../context/authentication.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Dashboard({user_id}) {
@@ -11,7 +13,6 @@ function Dashboard({user_id}) {
     const queryClient = useQueryClient();
 
     const { data: goalsData, isLoading, error, refetch } = useQuery(['goals', user_id], async () => {
-        //const response = await apiRequest.get(`/goals/user/${user_id}`);
         const response = await apiRequest.get(`/goals/userid?userId=${user_id}`);
         return response.data;
     });
@@ -26,12 +27,13 @@ function Dashboard({user_id}) {
     }
 
     if (error) {
-        console.error('Error fetching goals data:', error);
-        return <p>Error fetching goals data</p>;
+        toast.error('Error fetching goals data');
+        return;
     }
 
     return (
         <div className='dashboard'>
+            <ToastContainer />
             <div className="dashboard__subtitle">
                 Goals by Category
             </div>
