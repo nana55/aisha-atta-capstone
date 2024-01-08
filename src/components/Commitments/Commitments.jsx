@@ -6,6 +6,8 @@ import { AuthContext } from "../../context/authentication.jsx";
 import moment from "moment";
 import Interactions from '../Interactions/Interactions';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Commitments({ user_id }) {
 
@@ -14,7 +16,6 @@ function Commitments({ user_id }) {
 
     const { isLoading: goalsLoading, error: goalsError, data: goalsData } = useQuery(["goals"], () =>
         apiRequest.get("/goals?userId=" + user_id).then((response) => {
-            console.log("Response: ", response.data)
             return response.data;
         })
     );
@@ -24,13 +25,14 @@ function Commitments({ user_id }) {
     }
 
     if (goalsError) {
-        console.error("Error fetching goals:", goalsError);
-        return <p>Error fetching goals</p>;
+        toast.error("Error fetching goals");
+        return;
     }
 
 
     return (
         <div className='commitments'>
+            <ToastContainer />
             <h2 className='commitments__title'>Commitments Feed</h2>
             <div className="commitments__list">
                 {goalsData.map((goalData) => (
