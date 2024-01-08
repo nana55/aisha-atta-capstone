@@ -1,7 +1,7 @@
 $background: #D8BFD8;
 $random: #98FB98;
 $button: #523452;
-$text: #232036;
+
 
 //Home
 $headerbg: rgb(209, 224, 238);
@@ -17,5 +17,13 @@ $hover: #395dfc;
 $cardBg: aliceblue;
 
 //Text
-$light: #333;
+$text: #232036; //primary
+$light: #333;  //secondary
+$lighter: darkgrey; //for date-time
 $secondaryButtonText: white;
+
+//Input
+$input: rgba(180, 182, 187, 0.39);
+
+//
+$divider: rgb(184, 203, 221);

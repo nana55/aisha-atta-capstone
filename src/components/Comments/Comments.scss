@@ -2,68 +2,81 @@
 @use "../../styles/partials/colors" as *;
 @use "../../styles/partials/mixins" as *;
 
-.comments{
-    &__input{
+.comments {
+    &__input {
         display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin: 20px 0px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 1.25rem 0rem;
+        border-bottom: 1px solid $divider;
+        padding-bottom: 1rem;
     }
 
-    &__avatar{
-        width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
+    &__avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        object-fit: cover;
     }
 
-    input{
+    input {
         width: 100%;
-        padding: 10px;
+        padding: 0.625rem;
         border: 1px solid $outline;
-        background-color: rgba(180, 182, 187, 0.39);
-        
-        &::placeholder{
-            color: rgba(255, 255, 255, 0.562);
+        border-radius: 0.3rem;
+        background-color: $input;
+
+        &::placeholder {
+            color: $light;
+        }
+
+        &:focus-visible,
+        &:focus {
+            border: 2px solid $outline;
+            outline: none;
         }
     }
 
-    &__button{
+    &__button {
         border: none;
-        background-color: #5271ff;
+        background-color: $outline;
         color: white;
-        padding: 10px;
+        padding: 0.625rem;
         cursor: pointer;
-        border-radius: 3px;
+        border-radius: 0.2rem;
+
+        &:hover {
+            background-color: $hover;
+            transition: background-color 0.3s ease-in-out;
+        }
     }
 
-    &__comment{
-        margin: 30px 0px;
+    &__comment {
+        margin: 1rem 0;
         display: flex;
         justify-content: space-between;
-        gap: 20px;
+        gap: 1.25rem;
     }
 
-    &__detail{
+    &__detail {
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 0.025rem;
-        //align-items: flex-start;
     }
 
-    &__name{
+    &__name {
         font-weight: 500;
         font-size: 0.85rem;
     }
 
-    &__comment-actual{
+    &__comment-actual {
         font-weight: 400;
     }
 
-    &__date{
-        color: darkgray;
+    &__date {
+        color: $lighter;
         font-size: 0.65rem;
         width: 15%;
     }

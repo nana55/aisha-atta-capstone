@@ -5,6 +5,8 @@ import { apiRequest } from "../../utils/axios.jsx";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/authentication.jsx";
 import moment from "moment";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Comments({ goalId }) {
     const [addComment, setAddComment] = useState('');
@@ -30,7 +32,7 @@ function Comments({ goalId }) {
         e.preventDefault();
 
         if (!addComment.trim()) {
-            //Add Error message - Validation
+            toast.error("You need to enter some text to join this conversation");
             return;
         }
 
@@ -45,7 +47,8 @@ function Comments({ goalId }) {
             await mutation.mutate(newComment);
             setAddComment('');
         } catch (error) {
-            console.error("Error creating comment:", error);
+            toast.error("Error creating comment");
+
         }
     };
 
@@ -54,8 +57,8 @@ function Comments({ goalId }) {
     }
 
     if (error) {
-        console.error("Error fetching comments:", error);
-        return <p>Error fetching comments</p>;
+        toast.error("Error fetching comments");
+        return;
     }
 
 
@@ -64,6 +67,7 @@ function Comments({ goalId }) {
 
     return (
         <div className="comments">
+            <ToastContainer />
             <div className="comments__input">
                 <img src={avatar} alt="your avatar" className='comments__avatar' />
                 <input type="text" placeholder="Join the conversation" value={addComment} onChange={(e) => setAddComment(e.target.value)} />
