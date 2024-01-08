@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import RefreshIcon from '@mui/icons-material/Refresh';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Quote() {
 
@@ -17,7 +18,7 @@ function Quote() {
             const result = await axios.get(URL_PATH);
             setQuote(result.data);
         } catch (err) {
-            console.error("Error fetching quote: ", err);
+            toast.error("Error fetching quote");
         } finally {
             setIsLoading(false);
         }
@@ -30,10 +31,11 @@ function Quote() {
 
     useEffect(() => {
         fetchQuote();
-    }, []); // Fetch quote on mount
+    }, []); 
 
     return (
         <div className='quote'>
+            <ToastContainer />
             <div className={`quote__container ${isLoading ? 'loading' : ''}`}>
                 <FormatQuoteIcon className='quote__icon' />
                 <h4 className='quote__quote'>{quote.content}</h4>
