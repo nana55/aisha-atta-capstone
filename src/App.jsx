@@ -14,7 +14,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 function App() {
   const { currentUser } = useContext(AuthContext);
   useEffect(() => {
-    console.log('Current User:', currentUser);
+
   }, [currentUser]);
 
   const queryClient = new QueryClient();
