@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './CreateGoal.scss';
 import { useQuery, useQueryClient, useMutation, QueryClient } from "react-query";
 import { apiRequest } from "../../utils/axios.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CreateGoal() {
 
@@ -24,6 +26,11 @@ function CreateGoal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!description.trim() || !category.trim()) {
+      toast.error('Description and category cannot be empty');
+      return;
+    }
     
     const formData = {
       description,
@@ -31,8 +38,8 @@ function CreateGoal() {
       category,
     };
 
-    console.log("Form submitted", formData);
-    mutation.mutate(formData)
+    mutation.mutate(formData);
+
     setDescription('');
     setImage('');
     setCategory('');
@@ -41,6 +48,7 @@ function CreateGoal() {
 
   return (
     <div className='goal-form'>
+      <ToastContainer />
       <form className="goal-form__container" onSubmit={handleSubmit}>
         <div className="goal-form__group">
           <label className="goal-form__label" htmlFor="description">
@@ -52,7 +60,7 @@ function CreateGoal() {
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="I will ..."
+            placeholder="I would ..."
             required
           />
         </div>
