@@ -113,7 +113,7 @@ function Interactions({ goalId }) {
 
     return (
         <div className='interaction'>
-
+            <ToastContainer />
             <div className="interaction__container">
                 <div className="interaction__icon">
                     {likesData.userIds.includes(currentUser.id) ?
