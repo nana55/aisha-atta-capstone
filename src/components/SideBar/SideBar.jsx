@@ -12,16 +12,19 @@ function SideBar() {
 
         <div className="sidebar__item">
           <h1 className='sidebar__title'>Make a Commitment</h1>
+          <hr className='sidebar__divider' />
           <CreateGoal />
         </div>
 
         <div className="sidebar__item">
           <h1 className='sidebar__title'>Dashboard</h1>
+          <hr className='sidebar__divider' />
           <Dashboard />
         </div>
 
         <div className="sidebar__item">
           <h1 className='sidebar__title'>Motivational Quote</h1>
+          <hr className='sidebar__divider' />
           <Quote />
         </div>
 

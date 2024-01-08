@@ -61,10 +61,6 @@ function Comments({ goalId }) {
         return;
     }
 
-
-
-
-
     return (
         <div className="comments">
             <ToastContainer />

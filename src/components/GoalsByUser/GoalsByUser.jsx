@@ -27,9 +27,9 @@ function GoalsByUser({ id }) {
         return;
     }
 
-  return (
-    <div className='goalsByUser'>
-        <ToastContainer />
+    return (
+        <div className='goalsByUser'>
+            <ToastContainer />
             <div className="goalsByUser__list">
                 {goalsData.map((goalData) => (
                     <li key={goalData.id} className='goalsByUser__item'>
@@ -43,23 +43,23 @@ function GoalsByUser({ id }) {
 
                         <div className="goalsByUser__content">
                             <p className='goalsByUser__description'>{goalData.description}</p>
-                            
+
                             {goalData.image && (
                                 <img src={goalData.image} alt={`Image for ${goalData.description}`} className='goalsByUser__image' />
                             )}
                             {!goalData.image && (<img src='' alt='' />)}
-                            
+
                         </div>
-                        
+
                         < Interactions goalId={goalData.id} />
                         {currentUser.id === goalData.user_id && <ProgressTracker goalId={goalData.id} />}
-                        
+
                     </li>
                 ))}
 
             </div>
         </div>
-  )
+    )
 }
 
 export default GoalsByUser
