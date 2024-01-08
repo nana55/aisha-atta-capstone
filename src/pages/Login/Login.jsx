@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import "./Login.scss";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/authentication.jsx";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
 
@@ -28,13 +30,10 @@ function Login() {
             await login(inputs);
             navigate("/")
         } catch (err) {
-            console.error("Login error:", err);
+            toast.error("Login error");
             if ( err.response && err.response.status === 400 ) {
-                
                 setError("Incorrect username or password. Please try again.");
-                console.log("Error message:", error);
             } else {
-                console.error("Other Server Response:", err.response);
                 setError(err.response.data);
             }
         }
@@ -42,6 +41,7 @@ function Login() {
 
     return (
         <div className='login'>
+            <ToastContainer />
             <div className="login__container">
                 <div className="login__register">
                     <h1 className='login__title'>Get Motivated</h1>
